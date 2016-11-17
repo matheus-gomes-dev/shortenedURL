@@ -8,8 +8,8 @@ var MongoClient = mongodb.MongoClient;
 
 //(Focus on This Variable)
 //var url = 'mongodb://localhost:27017/my_database_name';	
-//var url = 'mongodb://username:password@ds157247.mlab.com:57247/urls';
-var url = process.env.MONGOLAB_URI;
+var url = 'mongodb://Matheus:kirkhetfield92@ds157247.mlab.com:57247/urls';
+//var url = process.env.MONGOLAB_URI;
 //(Focus on This Variable)
 
 // Use connect method to connect to the Server
