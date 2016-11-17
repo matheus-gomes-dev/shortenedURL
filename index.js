@@ -1,20 +1,26 @@
-var express = require('express');
-var app = express();
+//lets require/import the mongodb native drivers.
+var mongodb = require('mongodb');
 
-app.set('port', (process.env.PORT || 5000));
+//We need to work with "MongoClient" interface in order to connect to a mongodb server.
+var MongoClient = mongodb.MongoClient;
 
-app.use(express.static(__dirname + '/public'));
+// Connection URL. This is where your mongodb server is running.
 
-// views is directory for all template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+//(Focus on This Variable)
+//var url = 'mongodb://localhost:27017/my_database_name';
+var url = 'mongodb://username:password@ds157247.mlab.com:57247/urls';
+//(Focus on This Variable)
 
-app.get('/', function(request, response) {
-  response.render('pages/index');
+// Use connect method to connect to the Server
+  MongoClient.connect(url, function (err, db) {
+  if (err) {
+    console.log('Unable to connect to the mongoDB server. Error:', err);
+  } else {
+    console.log('Connection established to', url);
+
+    // do some work here with the database.
+
+    //Close connection
+    db.close();
+  }
 });
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
-
-
