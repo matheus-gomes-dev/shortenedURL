@@ -6,10 +6,14 @@ mongo.connect(link, function(err, db) {
         if(err) throw err;
         var urls = db.collection('urls');
         urls.find({
-            fullURL: 'www.google.com'
+            fullURL: { $eq: 'www.google.com' }
+        },{
+            name: 1,
+            age: 1,
+            _id: 0
         }).toArray(function(err, docs){
             if(err) throw err;
             console.log(docs);
             db.close();
-        });
+});
 });
