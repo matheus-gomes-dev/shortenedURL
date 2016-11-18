@@ -12,7 +12,10 @@ mongo.connect(link, function(err, db) {
             age: 1,
             _id: 0
         }).toArray(function(err, docs){
-            if(err) throw err;
+            if(err){
+                console.log("Entrou A");
+                throw err;
+            }
             console.log(docs);
             db.close();
 });
