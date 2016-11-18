@@ -1,27 +1,15 @@
-//lets require/import the mongodb native drivers.
-var mongodb = require('mongodb');
+var mongo = require('mongodb').MongoClient;
 
-//We need to work with "MongoClient" interface in order to connect to a mongodb server.
-var MongoClient = mongodb.MongoClient;
+var link = 'mongodb://Matheus:kirkhetfield92@ds157247.mlab.com:57247/urls';
 
-// Connection URL. This is where your mongodb server is running.
-
-//(Focus on This Variable)
-//var url = 'mongodb://localhost:27017/my_database_name';	
-var url = 'mongodb://Matheus:kirkhetfield92@ds157247.mlab.com:57247/urls';
-//var url = process.env.MONGOLAB_URI;
-//(Focus on This Variable)
-
-// Use connect method to connect to the Server
-  MongoClient.connect(url, function (err, db) {
-  if (err) {
-    console.log('Unable to connect to the mongoDB server. Error:', err);
-  } else {
-    console.log('Connection established to', url);
-
-    // do some work here with the database.
-
-    //Close connection
-    db.close();
-  }
+mongo.connect(link, function(err, db) {
+        if(err) throw err;
+        var urls = db.collection('urls');
+        urls.find({
+            fullURL: {'www.google.com'}
+        }).toArray(function(err, docs){
+            if(err) throw err;
+            console.log(docs);
+            db.close();
+        });
 });
