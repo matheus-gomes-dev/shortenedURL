@@ -24,6 +24,8 @@ mongo.connect(link, function(err, db) {
 });
 */
 
+
+/*
 mongo.connect(link, function(err, db) {
     if(err) {
         console.log("Erro aqui!");
@@ -44,4 +46,20 @@ mongo.connect(link, function(err, db) {
         }
 
     });
+});
+
+*/
+
+//insert obj to db
+var mongo = require('mongodb').MongoClient
+    mongo.connect(link, function(err, db) {
+        if(err) {
+            console.log("db connection error");
+            throw err;
+        }
+        var urls = db.collection('urls'),
+            obj = {originalURL: "https://www.google.com", shortID: 997};
+        docs.insert(obj);
+        console.log(JSON.stringify(obj));
+        db.close();
 });
