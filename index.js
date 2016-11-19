@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 console.log("Testando atualizacao");
-app.get('/', function(req, response) {  
+app.get('*', function(req, response) {  
   var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl; 
   var parameter = (req.originalUrl).substring(1,(req.originalUrl).length);
   console.log(fullUrl);
