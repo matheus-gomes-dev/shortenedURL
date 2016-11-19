@@ -41,10 +41,10 @@ app.get('*', function(req, response) {
         urls.insert(urlObj);
         console.log("Database updated!");
         db.close();
-    }
+    });
   }
 
-  
+
   else if(parameter.length<=5 && !isNaN(parameter)){
     response.send("shortened url");
   }
