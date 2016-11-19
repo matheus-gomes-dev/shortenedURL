@@ -62,6 +62,7 @@ app.get('*', function(req, response) {
                     console.log("Database error!!");
                 }
                 if (result){
+                    console.log(result);
                     var redirectLink = 'https://ancient-sierra-90112.herokuapp.com/' + parameter;
                     response.redirect(redirectLink);
                 }
