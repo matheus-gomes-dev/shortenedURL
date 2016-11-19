@@ -23,9 +23,11 @@ app.get('*', function(req, response) {
   if (parameter == '')
     response.send("Inform the address to be shortened at the url as follows: https://ancient-sierra-90112.herokuapp.com/new/http://www.urlToBeShortened.com");
   else if (parameter.indexOf("new/http://www.") > 0){
+    console.log("Teste A");
     response.send("Teste A");
   }
   else if (parameter.indexOf("new/https://www.") > 0){
+    console.log("Teste B");
     response.send("Teste B");
   }
 
