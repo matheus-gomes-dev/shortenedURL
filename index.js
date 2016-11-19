@@ -28,7 +28,7 @@ app.get('*', function(req, response) {
     }
     response.json(urlObj);
   }
-  else if(parameter.length<=5 && !isNaN(paramenter)){
+  else if(parameter.length<=5 && !isNaN(parameter)){
     response.send("shortened url");
   }
 
