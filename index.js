@@ -25,7 +25,7 @@ mongo.connect(link, function(err, db) {
 */
 
 
-/*
+
 mongo.connect(link, function(err, db) {
     if(err) {
         console.log("Erro aqui!");
@@ -33,7 +33,7 @@ mongo.connect(link, function(err, db) {
     }
     var urls = db.collection('urls');
     urls.findOne({
-        fullURL: { $eq: 'www.google.com' }
+        originalURL: { $eq: 'https://www.google.com' }
     }, function(error, result){
         if (error){ 
             console.log("Deu erro!!")
@@ -48,7 +48,11 @@ mongo.connect(link, function(err, db) {
     });
 });
 
-*/
+
+
+
+
+/*
 
 //insert obj to db
 var mongo = require('mongodb').MongoClient
@@ -61,5 +65,7 @@ var mongo = require('mongodb').MongoClient
             obj = {originalURL: "https://www.google.com", shortID: 997};
         urls.insert(obj);
         console.log(JSON.stringify(obj));
-        db.close();
+        db.close()  ;
 });
+
+*/
