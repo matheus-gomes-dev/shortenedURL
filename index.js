@@ -1,9 +1,9 @@
 var express = require('express');
 var app = express();
-var mongo = require('mongodb').MongoClient;
+//var mongo = require('mongodb').MongoClient;
 
 
-var link = 'mongodb://Matheus:testingdb1234@ds157247.mlab.com:57247/urls';
+//var link = 'mongodb://Matheus:testingdb1234@ds157247.mlab.com:57247/urls';
 
 console.log("Test");
 app.set('port', (process.env.PORT || 5000));
