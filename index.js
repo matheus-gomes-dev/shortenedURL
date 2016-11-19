@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var url = require('url');
 var mongo = require('mongodb').MongoClient;
-var link = 'mongodb://Matheus:testingdb1234@ds157247.mlab.com:57247/urls';
+var link = 'mongodb://Matheus:kirkhetfield92@ds157247.mlab.com:57247/urls';
 
 
 
