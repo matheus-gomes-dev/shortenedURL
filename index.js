@@ -24,7 +24,7 @@ app.get('*', function(req, response) {
   else if (parameter.indexOf("new/http://www.") >= 0 || parameter.indexOf("new/https://www.") >= 0){
     var urlObj = {
         original_url: parameter.substring(4,parameter.length),
-        short_url: "https://ancient-sierra-90112.herokuapp.com/" + '0001'
+        short_url: "https://ancient-sierra-90112.herokuapp.com/" + Math.floor((Math.random() * 1000) + 1);
     }
     response.json(urlObj);
   }
