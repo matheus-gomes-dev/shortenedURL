@@ -20,7 +20,14 @@ app.get('*', function(req, response) {
   var parameter = (req.originalUrl).substring(1,(req.originalUrl).length);
   console.log(fullUrl);
   console.log(parameter);
-  response.send("Teste inicial");
+  if (parameter == '')
+    response.send("Inform the address to be shortened at the url as follows: https://ancient-sierra-90112.herokuapp.com/new/http://www.urlToBeShortened.com");
+  else if (parameter.indexOf("new/http://www.") > 0){
+    response.send("Teste A");
+  }
+  else if (parameter.indexOf("new/https://www.") > 0){
+    response.send("Teste B");
+  }
 
 
 });
