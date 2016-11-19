@@ -59,7 +59,7 @@ var mongo = require('mongodb').MongoClient
         }
         var urls = db.collection('urls'),
             obj = {originalURL: "https://www.google.com", shortID: 997};
-        docs.insert(obj);
+        urls.insert(obj);
         console.log(JSON.stringify(obj));
         db.close();
 });
