@@ -45,36 +45,32 @@ app.get('*', function(req, response) {
   }
 
 
-  else if(parameter.length<=5 && !isNaN(parameter)){
+    else if(parameter.length<=5 && !isNaN(parameter)){
     //response.send("shortened url");
 
+        var mongo = require('mongodb').MongoClient
+        mongo.connect(link, function(err, db) {
+        if(err) {
+            console.log("Can't connect to database!");
+            throw err;
+        }
+        var urls = db.collection('urls');
+        urls.findOne({
+            short_url: { $eq: 'https://ancient-sierra-90112.herokuapp.com/' + parameter }
+        }, function(error, result){
+                if (error){ 
+                    console.log("Database error!!");
+                }
+                if (result){
+                    console.log("Encontrou algo!!");
+                }
+                else{
+                    response.send("This shortened url is not in database.");
+                }
 
-    mongo.connect(link, function(err, db) {
-    if(err) {
-        console.log("Erro aqui!");
-        throw err;
+            });
+        });
     }
-    var urls = db.collection('urls');
-    urls.findOne({
-        short_url: { $eq: 'https://ancient-sierra-90112.herokuapp.com/' + parameter }
-    }, function(error, result){
-        if (error){ 
-            console.log("Database error!!");
-        }
-        if (result){
-            console.log("Encontrou algo!!");
-        }
-        else{
-            console.log("Nao encontrou nada!!");
-        }
-
-    });
-});
-
-
-
-
-  }
 
 
 });
