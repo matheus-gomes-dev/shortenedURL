@@ -61,8 +61,10 @@ app.get('*', function(req, response) {
                 if (error){ 
                     console.log("Database error!!");
                 }
-                if (result)
-                    response.location('https://ancient-sierra-90112.herokuapp.com/' + parameter);
+                if (result){
+                    var redirectLink = 'https://ancient-sierra-90112.herokuapp.com/' + parameter;
+                    response.redirect(redirectLink);
+                }
                 else
                     response.send("This shortened url is not in database.");
             });
