@@ -21,13 +21,30 @@ app.get('*', function(req, response) {
   console.log(parameter);
   if (parameter == '')
     response.send("Inform the address to be shortened at the url as follows: https://ancient-sierra-90112.herokuapp.com/new/http://www.urlToBeShortened.com");
+  
   else if (parameter.indexOf("new/http://www.") >= 0 || parameter.indexOf("new/https://www.") >= 0){
     var urlObj = {
         original_url: parameter.substring(4,parameter.length),
         short_url: "https://ancient-sierra-90112.herokuapp.com/" + Math.floor((Math.random() * 10000) + 1)
     }
     response.json(urlObj);
+
+
+    //database insert operation
+    var mongo = require('mongodb').MongoClient
+    mongo.connect(link, function(err, db) {
+        if(err) {
+            console.log("db connection error");
+            throw err;
+        }
+        var urls = db.collection('urls');
+        urls.insert(urlObj);
+        console.log("Database updated!");
+        db.close();
+    }
   }
+
+  
   else if(parameter.length<=5 && !isNaN(parameter)){
     response.send("shortened url");
   }
@@ -69,8 +86,8 @@ mongo.connect(link, function(err, db) {
 
 
 
-/*
 
+/*
 //insert obj to db
 var mongo = require('mongodb').MongoClient
     mongo.connect(link, function(err, db) {
