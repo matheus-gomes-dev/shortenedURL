@@ -46,31 +46,20 @@ app.get('*', function(req, response) {
 
 
   else if(parameter.length<=5 && !isNaN(parameter)){
-    response.send("shortened url");
-  }
+    //response.send("shortened url");
 
 
-});
-
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
-
-
-/*
-
-mongo.connect(link, function(err, db) {
+    mongo.connect(link, function(err, db) {
     if(err) {
         console.log("Erro aqui!");
         throw err;
     }
     var urls = db.collection('urls');
     urls.findOne({
-        originalURL: { $eq: 'https://www.google.com' }
+        short_url: { $eq: 'https://ancient-sierra-90112.herokuapp.com/' + parameter }
     }, function(error, result){
         if (error){ 
-            console.log("Deu erro!!")
+            console.log("Database error!!");
         }
         if (result){
             console.log("Encontrou algo!!");
@@ -82,7 +71,25 @@ mongo.connect(link, function(err, db) {
     });
 });
 
-*/
+
+
+
+  }
+
+
+});
+
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
+
+
+
+
+
+
+
 
 
 
