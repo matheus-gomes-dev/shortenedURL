@@ -1,20 +1,19 @@
 var express = require('express');
 var app = express();
 var url = require('url');
-//var mongo = require('mongodb').MongoClient;
+var mongo = require('mongodb').MongoClient;
+var link = 'mongodb://Matheus:testingdb1234@ds157247.mlab.com:57247/urls';
 
 
-//var link = 'mongodb://Matheus:testingdb1234@ds157247.mlab.com:57247/urls';
+
 
 app.set('port', (process.env.PORT || 5000));
-
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
-console.log("Testando atualizacao");
 app.get('*', function(req, response) {  
   var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl; 
   var parameter = (req.originalUrl).substring(1,(req.originalUrl).length);
@@ -22,13 +21,12 @@ app.get('*', function(req, response) {
   console.log(parameter);
   if (parameter == '')
     response.send("Inform the address to be shortened at the url as follows: https://ancient-sierra-90112.herokuapp.com/new/http://www.urlToBeShortened.com");
-  else if (parameter.indexOf("new/http://www.") >= 0){
-    console.log("Teste A");
-    response.send("Teste A");
-  }
-  else if (parameter.indexOf("new/https://www.") >= 0){
-    console.log("Teste B");
-    response.send("Teste B");
+  else if (parameter.indexOf("new/http://www.") >= 0 || parameter.indexOf("new/https://www.") >= 0){
+    var urlObj = {
+        original_url: parameter.substring(4,parameter.length),
+        short_url: "https://ancient-sierra-90112.herokuapp.com/" + '0001'
+    }
+    response.json(urlObj);
   }
 
 
