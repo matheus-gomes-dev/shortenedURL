@@ -19,6 +19,7 @@ app.get('*', function(req, response) {
   var parameter = (req.originalUrl).substring(1,(req.originalUrl).length);
   console.log(fullUrl);
   console.log(parameter);
+  response.send("Teste inicial");
 
 
 });
