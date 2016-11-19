@@ -5,7 +5,7 @@ var mongo = require('mongodb').MongoClient;
 
 var link = 'mongodb://Matheus:testingdb1234@ds157247.mlab.com:57247/urls';
 
-
+console.log("Test");
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
