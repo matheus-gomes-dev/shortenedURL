@@ -5,14 +5,13 @@ var app = express();
 
 //var link = 'mongodb://Matheus:testingdb1234@ds157247.mlab.com:57247/urls';
 
-console.log("Test");
 app.set('port', (process.env.PORT || 5000));
 
-app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
 
 app.get('*', function(req, response) {  
   var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl; 
